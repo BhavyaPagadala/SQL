@@ -29,7 +29,7 @@ create table reserves(
     foreign key(bid)references boats(bid)
 );
 alter table sailors
-ADD constraint unique_rating uniaue(rating);
+ADD constraint unique_rating unique(rating);
 select sname from sailors 
 where sid in(
     select sid in reserves where bid in(
@@ -42,6 +42,7 @@ select distinct sid from reserves
 where bid in(
         select bid from boats where color='red' or color='green'
 );
+
 
 
 
