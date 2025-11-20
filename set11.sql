@@ -26,26 +26,31 @@ WHERE sid = 102;
 
 DROP VIEW BranchView;
 
-SET SERVEROUTPUT ON;
+drop table student purge; 
 CREATE TABLE student (
-    roll_no NUMBER(5),
-    name VARCHAR2(30),
-    course VARCHAR2(20),
-    marks NUMBER(5)
+    sid   NUMBER,
+    name  VARCHAR2(30),
+    marks NUMBER
 );
+
+-- PL/SQL block
 BEGIN
-    INSERT INTO student VALUES (101, 'Bhavya', 'CSE', 95);
-    SAVEPOINT A;  
-    INSERT INTO student VALUES (102, 'Sai', 'ECE', 89);
-    SAVEPOINT B;  
-    INSERT INTO student VALUES (103, 'Sri', 'EEE', 76);
-    SAVEPOINT C;  
-    ROLLBACK TO B;  
-    INSERT INTO student VALUES (104, 'Naga', 'IT', 88);
-    COMMIT;  
-    DBMS_OUTPUT.PUT_LINE('Transaction completed successfully!');
+    INSERT INTO student VALUES (1, 'Akhil', 85);
+    INSERT INTO student VALUES (2, 'Navya', 90);
+
+    SAVEPOINT sp1;
+
+    INSERT INTO student VALUES (3, 'Ravi', 45);
+    INSERT INTO student VALUES (4, 'Sam', 88);
+
+    ROLLBACK TO sp1;
+
+    INSERT INTO student VALUES (5, 'Teja', 76);
+
+    COMMIT;
 END;
 /
+
 
 
 
