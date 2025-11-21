@@ -39,3 +39,20 @@ where perc = (select max(perc) from student);
 select name
 from student
 where age between 15 and 30;
+
+SET SERVEROUTPUT ON;
+DECLARE
+    numerator   NUMBER := 10;
+    denominator NUMBER := 0;
+    result      NUMBER;
+BEGIN
+    result := numerator / denominator;
+    DBMS_OUTPUT.PUT_LINE('Result = ' || result);
+EXCEPTION
+    WHEN ZERO_DIVIDE THEN
+        DBMS_OUTPUT.PUT_LINE('Error: Division by zero is not allowed.');
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('An unexpected error occurred: ' || SQLERRM);
+END;
+/
+
