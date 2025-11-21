@@ -17,12 +17,15 @@ INSERT INTO STUDENTT VALUES (104, 'Deepika', 88.75, 'F', 'MECH');
 
 SELECT * FROM BranchView;
 
-UPDATE STUDENTT
-SET branch = 'CIVIL'
-WHERE sid = 104;
+INSERT INTO branch_view (sid, sname, branch)
+VALUES (101, 'Rahul', 'CSE');
 
-DELETE FROM STUDENTT
-WHERE sid = 102;
+UPDATE branch_view
+SET branch = 'ECE'
+WHERE sid = 101;
+
+DELETE FROM branch_view
+WHERE sid = 101;
 
 DROP VIEW BranchView;
 
@@ -50,6 +53,7 @@ BEGIN
     COMMIT;
 END;
 /
+
 
 
 
