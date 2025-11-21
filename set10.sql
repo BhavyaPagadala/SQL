@@ -57,10 +57,13 @@ FROM sailor s
 JOIN reservs r 
 ON s.sid = r.sid;
 
-SELECT DISTINCT s.sid
-FROM sailor s
-JOIN reservs r ON s.sid = r.sid
-JOIN boat b ON r.bid = b.bid
-WHERE (b.color = 'red' or b.color='GREEN');
+SELECT sid
+FROM RESERVS R JOIN BOAT B ON R.bid = B.bid
+WHERE B.color = 'RED'
+INTERSECT
+SELECT sid
+FROM RESERVS R JOIN BOAT B ON R.bid = B.bid
+WHERE B.color = 'GREEN';
 
 select sname from sailor where age=(select max(age) from sailor);
+
