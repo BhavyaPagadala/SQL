@@ -54,4 +54,34 @@ ORDER BY s.age;
 
 SELECT DISTINCT s.sname
 FROM Sailor s
+
 JOIN Reer r ON s.sid = r.sid;
+CREATE TABLE student (
+    sname VARCHAR2(30),
+    marks NUMBER(5)
+);
+INSERT INTO student VALUES ('Bhavya', 85);
+INSERT INTO student VALUES ('Sai', 92);
+INSERT INTO student VALUES ('Sri', 67);
+INSERT INTO student VALUES ('Naga', 55);
+COMMIT;
+SET SERVEROUTPUT ON;
+DECLARE
+   v_name   STUDENT.sname%TYPE := 'Bhavya';
+   v_marks  STUDENT.marks%TYPE;
+BEGIN
+   SELECT marks INTO v_marks 
+   FROM STUDENT 
+   WHERE sname = v_name;
+   IF v_marks >= 60 THEN
+      DBMS_OUTPUT.PUT_LINE(v_name || ' got First Class with marks: ' || v_marks);
+   ELSE
+      DBMS_OUTPUT.PUT_LINE(v_name || ' did not get First Class. Marks: ' || v_marks);
+   END IF;
+EXCEPTION
+   WHEN NO_DATA_FOUND THEN
+      DBMS_OUTPUT.PUT_LINE('No record found for student ' || v_name);
+   WHEN OTHERS THEN
+      DBMS_OUTPUT.PUT_LINE('Error: ' || SQLERRM);
+END;
+/
